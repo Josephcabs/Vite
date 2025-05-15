@@ -12,6 +12,10 @@
       "dest": "/server/server.js"
     },
     {
+      "src": "/assets/(.*)",
+      "dest": "/monorepo/dist/assets/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/server/server.js"
     }
