@@ -1,17 +1,17 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "./dist",
+  "buildCommand": "cd monorepo && npm install && npm run build",
+  "outputDirectory": "monorepo/dist",
   "builds": [
     {
-      "src": "../server/server.js",
+      "src": "server/server.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "../server/server.js"
+      "dest": "server/server.js"
     },
     {
       "handle": "filesystem"
