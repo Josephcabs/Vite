@@ -1,7 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "cd monorepo && npm install && npm run build && cd ../server && npm install",
-  "outputDirectory": "monorepo/dist",
   "builds": [
     {
       "src": "server/server.js",
