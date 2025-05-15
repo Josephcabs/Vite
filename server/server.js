@@ -10,7 +10,7 @@ app.use(cors());
 // Parse JSON bodies
 app.use(express.json());
 
-// API routes
+// API routes - these must come BEFORE static file serving
 app.get("/api", (req, res) => {
   res.json({ message: "Hello World" });
 });
@@ -21,12 +21,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../monorepo/dist')));
   
   // Handle all other routes by serving index.html
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../monorepo/dist/index.html'));
-  });
-  
-  // Handle all other routes
-  app.get('/:path', (req, res) => {
+  app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../monorepo/dist/index.html'));
   });
 }
