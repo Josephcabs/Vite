@@ -17,9 +17,16 @@ app.get("/api", (req, res) => {
 
 // Serve static files from the monorepo build directory in production
 if (process.env.NODE_ENV === 'production') {
+  // Serve static files
   app.use(express.static(path.join(__dirname, '../monorepo/dist')));
   
-  app.get('*', (req, res) => {
+  // Handle all other routes by serving index.html
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../monorepo/dist/index.html'));
+  });
+  
+  // Handle all other routes
+  app.get('/:path', (req, res) => {
     res.sendFile(path.join(__dirname, '../monorepo/dist/index.html'));
   });
 }
