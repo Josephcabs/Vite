@@ -1,32 +1,10 @@
-const express = require("express");
-const path = require("path");
-const cors = require("cors");
-
+// server/server.js
+const express = require('express');
 const app = express();
 
-// Enable CORS for development
-app.use(cors());
-
-// Parse JSON bodies
-app.use(express.json());
-
-// API routes - these must come BEFORE static file serving
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello World" });
+// your routes/middleware here
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'hi' });
 });
 
-// Serve static files from the monorepo build directory in production
-if (process.env.NODE_ENV === 'production') {
-  // Serve static files
-  app.use(express.static(path.join(__dirname, '../monorepo/dist')));
-  
-  // Handle all other routes by serving index.html
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../monorepo/dist/index.html'));
-  });
-}
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+module.exports = app;
