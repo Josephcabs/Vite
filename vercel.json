@@ -4,10 +4,6 @@
     {
       "src": "server/server.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "monorepo/dist/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -17,7 +13,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/monorepo/dist/index.html"
+      "dest": "/server/server.js"
     }
   ]
 }
